@@ -19,3 +19,8 @@ with st.expander('Data'):
 with st.expander('Data visualization'):
   st.scatter_chart(data=df, x='bill_length_mm', y='body_mass_g', color='species')
 
+# Data preparation
+island_list=['Torgersen', 'Biscoe', 'Dream']
+with st.sidebar:
+  st.write('Input features:')
+  island=st.selectbox('Island',island_list)
