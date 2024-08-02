@@ -23,4 +23,4 @@ with st.expander('Data visualization'):
 island_list=['Torgersen', 'Biscoe', 'Dream']
 with st.sidebar:
   st.write('Input features:')
-  island=st.selectbox('Island',island_list)
+  island=st.selectbox('Island:',island_list)
