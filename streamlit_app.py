@@ -5,7 +5,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 st.title('🤖 Machine Learning App')
 
-st.info('This is app builds a machine learning model!')
+st.info('This is app builds a machine learning model with streamlit! Source: https://github.com/dataprofessor/dp-machinelearning/blob/master/streamlit_app.py and https://www.youtube.com/@streamlitofficial')
 
 with st.expander('Data'):
   st.write('**Raw data**')
