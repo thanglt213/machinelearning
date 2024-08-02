@@ -24,3 +24,5 @@ island_list=['Torgersen', 'Biscoe', 'Dream']
 with st.sidebar:
   st.write('Input features:')
   island=st.selectbox('Island:',island_list)
+  gender=st.selectbox('Gender:',['male','female'])
+  bill_length=st.slicer('Bill length (mm):',32.1,59.6,44)
