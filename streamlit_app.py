@@ -3,7 +3,7 @@ import pandas as pd
 
 st.title('🎈 Machine learning app')
 
-st.info('This is a machine learning app')
+st.info('This is a machine learning app from https://www.youtube.com/@streamlitofficial')
 
 with st.expander('Data'):
   st.write('**Raw data**')
