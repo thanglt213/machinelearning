@@ -36,7 +36,7 @@ with st.expander('Data visualization'):
     st.scatter_chart(data=df, x='bill_length_mm', y='body_mass_g', color='species')
 
 # Initialize the session state to store the input data
-if 'input_df' is not in st.session_state:
+if 'input_df' not in st.session_state:
     st.session_state.input_df = pd.DataFrame()
 
 with st.sidebar:
