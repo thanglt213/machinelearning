@@ -67,7 +67,8 @@ with st.sidebar:
         st.session_state.input_df = pd.concat([st.session_state.input_df, new_row], ignore_index=True)
 
     # Combine with existing raw data (assuming X_raw is already defined)
-    input_penguins = pd.concat([st.session_state.input_data, X_raw], axis=0)
+    input_df = pd.DataFrame(data)
+    input_penguins = pd.concat([input_df, X_raw], axis=0)
 
 with st.expander('Input features'):
     st.write('**Input penguin**')
