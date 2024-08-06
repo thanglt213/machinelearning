@@ -63,7 +63,7 @@ with st.sidebar:
     if st.button('Add'):
         # Combine with existing raw data (assuming X_raw is already defined)
         new_row = pd.DataFrame(data, index=[0])
-        input_df = pd.concat(input_df, new_row, ignore_index=True)
+        input_df = pd.concat([input_df, new_row], ignore_index=True)
 
 st.write(input_df)
 st.write(input_penguins)
