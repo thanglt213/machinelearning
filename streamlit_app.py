@@ -67,7 +67,7 @@ with st.sidebar:
         new_row = pd.DataFrame(data, index=[0])
         input_df = pd.concat([session_state.input_df, new_row], ignore_index=True)
 
-        st.write(input_df)
+        #st.write(input_df)
         #st.write(input_penguins)
 
 
