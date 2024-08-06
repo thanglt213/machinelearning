@@ -72,26 +72,26 @@ with st.expander('Input features'):
     st.write('**Combined penguins data**')
     input_penguins
 
-# Data preparation
-encode = ['island', 'sex']
-df_penguins = pd.get_dummies(input_penguins, prefix=encode)
-
-n = len(input_df)
-X = df_penguins[n:]
-input_row = df_penguins[:1]
-
-target_mapper = {'Adelie': 0, 'Chinstrap': 1, 'Gentoo': 2}
-y = y_raw.apply(lambda val: target_mapper[val])
-
-with st.expander('Data preparation'):
-    st.write('**Encoded X (input penguin)**')
-    input_row
-    st.write('**Encoded y**')
-    y
 
 # Predict
 if st.button("Predict"):
+    # Data preparation
+    encode = ['island', 'sex']
+    df_penguins = pd.get_dummies(input_penguins, prefix=encode)
     
+    n = len(input_df)
+    X = df_penguins[n:]
+    input_row = df_penguins[:1]
+    
+    target_mapper = {'Adelie': 0, 'Chinstrap': 1, 'Gentoo': 2}
+    y = y_raw.apply(lambda val: target_mapper[val])
+
+    with st.expander('Data preparation'):
+        st.write('**Encoded X (input penguin)**')
+        input_row
+        st.write('**Encoded y**')
+        y
+
     # Check if model file exists
     if os.path.exists(MODEL_FILE_PATH):
         # Load the model from file
