@@ -36,7 +36,7 @@ with st.expander('Data visualization'):
     st.scatter_chart(data=df, x='bill_length_mm', y='body_mass_g', color='species')
 
 # Initialize the session state to store the input data
-if 'input_df' not in st.session_state:
+if 'input_df' is not in st.session_state:
     st.session_state.input_df = pd.DataFrame()
 
 with st.sidebar:
@@ -59,9 +59,6 @@ with st.sidebar:
     
     # Add button to append data to the session state
     if st.button('Add'):
-        new_row = pd.DataFrame(data, index=[0])
-        st.session_state.input_df = pd.concat([st.session_state.input_df, new_row], ignore_index=True)
-
         # Combine with existing raw data (assuming X_raw is already defined)
         input_df = pd.DataFrame(data)
         input_penguins = pd.concat([input_df, X_raw], axis=0)
