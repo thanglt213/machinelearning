@@ -56,19 +56,15 @@ with st.sidebar:
         'body_mass_g': body_mass_g,
         'sex': gender
     }
-    """
-    input_df = pd.DataFrame(data, index=[0])
-    input_penguins = pd.concat([input_df, X_raw], axis=0)
-    """
     
     # Add button to append data to the session state
     if st.button('Add'):
         new_row = pd.DataFrame(data, index=[0])
         st.session_state.input_df = pd.concat([st.session_state.input_df, new_row], ignore_index=True)
 
-    # Combine with existing raw data (assuming X_raw is already defined)
-    input_df = pd.DataFrame(data)
-    input_penguins = pd.concat([input_df, X_raw], axis=0)
+        # Combine with existing raw data (assuming X_raw is already defined)
+        input_df = pd.DataFrame(data)
+        input_penguins = pd.concat([input_df, X_raw], axis=0)
 
 with st.expander('Input features'):
     st.write('**Input penguin**')
