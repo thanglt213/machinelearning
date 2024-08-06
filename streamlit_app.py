@@ -49,7 +49,7 @@ with st.sidebar:
         st.session_state['data'] = pd.DataFrame(columns=['island', 'bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g', 'sex'])
 
     data = st.session_state['data']
-    input_df = pd.DataFrame(data, index=[0])
+    input_df = pd.DataFrame(data)
     input_penguins = pd.concat([input_df, X_raw], axis=0)    
     
     new_row = {
@@ -65,7 +65,7 @@ with st.sidebar:
         st.session_state['data'] = pd.concat([st.session_state['data'], pd.DataFrame([new_row])], ignore_index=True)
         st.success('New data added.')
     
-        input_df = pd.DataFrame(data, index=[0])
+        input_df = pd.DataFrame(data)
         input_penguins = pd.concat([input_df, X_raw], axis=0)
 
 with st.expander('Input features'):
