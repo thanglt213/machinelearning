@@ -55,14 +55,6 @@ with st.sidebar:
     input_df = pd.DataFrame(data, index=[0])
     input_penguins = pd.concat([input_df, X_raw], axis=0)
 
-    # Add button to add new data to the dataset
-    if st.button('Add data'):
-        new_row = pd.DataFrame(input_data, index=[len(df)])
-        df = pd.concat([df, new_row], ignore_index=True)
-        df.to_csv(DATA_FILE_PATH, index=False)
-        st.session_state['df'] = df
-        st.success('New data added to the dataset.')
-
 with st.expander('Input features'):
     st.write('**Input penguin**')
     input_df
