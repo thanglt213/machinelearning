@@ -6,7 +6,7 @@ import os
 from sklearn.ensemble import RandomForestClassifier
 
 # File path for saving the trained model
-MODEL_FILE_PATH = "penguin_random_forest_model3.pkl"
+MODEL_FILE_PATH = "penguin_random_forest_model.pkl"
 
 st.title('🤖 Machine Learning App')
 
