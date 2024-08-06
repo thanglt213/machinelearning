@@ -15,7 +15,7 @@ st.info(
 )
 
 # File path for saving the trained model
-MODEL_FILE_PATH = "penguin_random_forest_model.pkl"
+MODEL_FILE_PATH = "penguin_random_forest_model1.pkl"
 
 with st.expander('Data'):
     st.write('**Raw data**')
