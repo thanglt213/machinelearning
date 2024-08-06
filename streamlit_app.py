@@ -37,9 +37,9 @@ with st.expander('Data visualization'):
 
 # Initialize the session state to store the input data
 if 'input_df' not in st.session_state:
-    st.session_state.input_df = pd.DataFrame()
+    input_df = pd.DataFrame()
 if 'input_penguins' not in st.session_state:
-    st.session_state.input_penguins = pd.DataFrame()
+    input_penguins = pd.DataFrame()
 
 with st.sidebar:
     st.header('Input features')
