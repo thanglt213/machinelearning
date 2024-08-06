@@ -17,7 +17,7 @@ st.info(
     https://www.youtube.com/@streamlitofficial
     '''
 )
-
+data=[]
 
 with st.expander('Data'):
     st.write('**Raw data**')
@@ -49,8 +49,6 @@ with st.sidebar:
         st.session_state['data'] = pd.DataFrame(columns=['island', 'bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g', 'sex'])
 
     data = st.session_state['data']
-    input_df = pd.DataFrame(data)
-    input_penguins = pd.concat([input_df, X_raw], axis=0)    
     
     new_row = {
         'island': island,
