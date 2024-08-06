@@ -60,7 +60,7 @@ with st.sidebar:
     }
 
     if st.button('Add data'):
-        st.session_state['data'] = data.append(new_row, ignore_index=True)
+        st.session_state['data'] = pd.concat([st.session_state['data'], pd.DataFrame([new_row])], ignore_index=True)
         st.success('New data added.')
 
 # Display current data
