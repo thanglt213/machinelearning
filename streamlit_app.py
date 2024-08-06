@@ -62,7 +62,7 @@ with st.sidebar:
     # Add button to append data to the session state
     if st.button('Add'):
         # Combine with existing raw data (assuming X_raw is already defined)
-        input_df = pd.DataFrame(data, index=[0])
+        input_df = pd.DataFrame(data)
         input_penguins = pd.concat([input_df, X_raw], axis=0)
 
 st.write(input_df)
