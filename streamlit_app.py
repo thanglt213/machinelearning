@@ -17,7 +17,6 @@ st.info(
     https://www.youtube.com/@streamlitofficial
     '''
 )
-data=[]
 
 with st.expander('Data'):
     st.write('**Raw data**')
@@ -60,7 +59,7 @@ with st.sidebar:
     }
 
     if st.button('Add data'):
-        st.session_state['data'] = pd.concat([st.session_state['data'], pd.DataFrame([new_row])], ignore_index=True)
+        data = pd.concat([data, pd.DataFrame([new_row])], ignore_index=True)
         st.success('New data added.')
     
         input_df = pd.DataFrame(data)
