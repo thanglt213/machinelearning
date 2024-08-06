@@ -65,8 +65,8 @@ with st.sidebar:
         input_df = pd.DataFrame(data, index=[0])
         input_penguins = pd.concat([input_df, X_raw], axis=0)
 
-st.dataframe(input_df)
-st.dataframe(input_input_penguins)
+st.write(input_df)
+st.write(input_penguins)
 
 
 """
