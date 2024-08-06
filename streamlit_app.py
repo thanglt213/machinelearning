@@ -4,8 +4,35 @@ import joblib
 from sklearn.ensemble import RandomForestClassifier
 import os
 
+st.title('🤖 Machine Learning App')
+
+st.info(
+    '''This is app builds a machine learning model in Python with streamlit!
+    \n Source: 
+    https://github.com/dataprofessor/dp-machinelearning/blob/master/streamlit_app.py
+    https://www.youtube.com/@streamlitofficial
+    '''
+)
+
 # File path for saving the trained model
 MODEL_FILE_PATH = "penguin_random_forest_model.pkl"
+
+with st.expander('Data'):
+    st.write('**Raw data**')
+    df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv')
+    df
+
+    st.write('**X**')
+    X_raw = df.drop('species', axis=1)
+    X_raw
+
+    st.write('**y**')
+    y_raw = df.species
+    y_raw
+
+with st.expander('Data visualization'):
+    st.scatter_chart(data=df, x='bill_length_mm', y='body_mass_g', color='species')
+
 
 # Initialize the dataframe if not present in session state
 if 'data' not in st.session_state:
