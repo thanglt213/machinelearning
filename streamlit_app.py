@@ -60,8 +60,12 @@ with st.sidebar:
     }
 
     if st.button('Add data'):
-        st.session_state['data'] = pd.concat([st.session_state['data'], pd.DataFrame([new_row])], ignore_index=True)
-        st.success('New data added.')
+        # Check if the new_row has the same columns as the existing data
+        try:
+            st.session_state['data'] = pd.concat([st.session_state['data'], pd.DataFrame([new_row])], ignore_index=True)
+            st.success('New data added.')
+        except Exception as e:
+            st.error(f"Error adding data: {e}")
 
 # Display current data
 st.write("Current data in the session:")
@@ -69,24 +73,27 @@ st.dataframe(st.session_state['data'])
 
 # Prepare data for modeling
 if not st.session_state['data'].empty:
-    encode = ['island', 'sex']
-    df_encoded = pd.get_dummies(st.session_state['data'], columns=encode)
+    try:
+        encode = ['island', 'sex']
+        df_encoded = pd.get_dummies(st.session_state['data'], columns=encode)
 
-    # Check if model file exists
-    if os.path.exists(MODEL_FILE_PATH):
-        # Load the model from file
-        clf = joblib.load(MODEL_FILE_PATH)
-        st.success("Model loaded from file.")
-    else:
-        # Train a dummy model since we don't have the original training data here
-        clf = RandomForestClassifier()
-        # Dummy training data (should replace with actual data loading logic)
-        # X_train, y_train = ...
-        # clf.fit(X_train, y_train)
-        joblib.dump(clf, MODEL_FILE_PATH)
-        st.success("Dummy model trained and saved to file.")
+        # Ensure the necessary columns are available for prediction
+        if os.path.exists(MODEL_FILE_PATH):
+            clf = joblib.load(MODEL_FILE_PATH)
+            st.success("Model loaded from file.")
+        else:
+            clf = RandomForestClassifier()
+            # Dummy training for demonstration purposes (replace with actual training)
+            X_train, y_train = df_encoded, [0] * len(df_encoded)  # Placeholder
+            clf.fit(X_train, y_train)
+            joblib.dump(clf, MODEL_FILE_PATH)
+            st.success("Dummy model trained and saved to file.")
 
-    # Apply model to make predictions on the data
-    predictions = clf.predict(df_encoded)
-    st.write("Predictions:")
-    st.write(predictions)
+        # Apply model to make predictions on the data
+        predictions = clf.predict(df_encoded)
+        st.write("Predictions:")
+        st.write(predictions)
+    except Exception as e:
+        st.error(f"Error during prediction: {e}")
+else:
+    st.warning("No data available for predictions.")
