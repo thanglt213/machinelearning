@@ -44,7 +44,13 @@ with st.sidebar:
     body_mass_g = st.slider('Body mass (g)', 2700.0, 6300.0, 4207.0)
     gender = st.selectbox('Gender', ('male', 'female'))
 
-    data = {
+    # Initialize the dataframe if not present in session state
+    if 'data' not in st.session_state:
+        st.session_state['data'] = pd.DataFrame(columns=['island', 'bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g', 'sex'])
+
+    data = st.session_state['data']
+    
+    new_row = {
         'island': island,
         'bill_length_mm': bill_length_mm,
         'bill_depth_mm': bill_depth_mm,
@@ -52,6 +58,11 @@ with st.sidebar:
         'body_mass_g': body_mass_g,
         'sex': gender
     }
+
+    if st.button('Add data'):
+        st.session_state['data'] = pd.concat([st.session_state['data'], pd.DataFrame([new_row])], ignore_index=True)
+        st.success('New data added.')
+    
     input_df = pd.DataFrame(data, index=[0])
     input_penguins = pd.concat([input_df, X_raw], axis=0)
 
