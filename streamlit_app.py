@@ -64,7 +64,11 @@ with st.sidebar:
         # Combine with existing raw data (assuming X_raw is already defined)
         input_df = pd.DataFrame(data, index=[0])
         input_penguins = pd.concat([input_df, X_raw], axis=0)
-        
+
+st.dataframe(input_df)
+st.dataframe(input_input_penguins)
+
+
 """
 with st.expander('Input features'):
     st.write('**Input penguin**')
