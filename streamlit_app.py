@@ -19,7 +19,7 @@ st.info(
 )
 
 # Function to load data
-@st.cache
+# @st.cache
 def load_data():
     df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv')
     X_raw = df.drop('species', axis=1)
@@ -27,7 +27,7 @@ def load_data():
     return df, X_raw, y_raw
 
 # Function to load or train model
-@st.cache
+# @st.cache
 def get_model():
     if os.path.exists(MODEL_FILE_PATH):
         model = joblib.load(MODEL_FILE_PATH)
