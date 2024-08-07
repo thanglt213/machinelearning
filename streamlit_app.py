@@ -26,7 +26,7 @@ def load_data():
     y_raw = df.species
     return df, X_raw, y_raw
 
-# Get model function
+# Function to load or train model
 @st.cache
 def get_model():
     # Check if model file exists
@@ -67,7 +67,7 @@ def get_user_input():
 
     return st.session_state.input_df
 
-# Make predictions function
+# Function to make predictions
 def predict_penguin(clf, input_row: pd.DataFrame):
     if input_row.empty:
         st.write("Input data to predict!")
