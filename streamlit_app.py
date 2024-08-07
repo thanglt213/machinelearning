@@ -130,7 +130,7 @@ def predict_penguin(input_row: pd.DataFrame):
             'Chinstrap': st.column_config.ProgressColumn('Chinstrap', format='%f', width='medium', min_value=0, max_value=1),
             'Gentoo': st.column_config.ProgressColumn('Gentoo', format='%f', width='medium', min_value=0, max_value=1),
             'Predicted_Species': st.column_config.TextColumn('Predicted Species', width='medium')
-        }, hide_index=True)
+        }, hide_index=False)
         
         st.success("Predictions added to the dataframe successfully.")
 
