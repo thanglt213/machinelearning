@@ -117,7 +117,7 @@ def predict_penguin(input_row: pd.DataFrame):
             'Adelie': st.column_config.ProgressColumn('Adelie', format='%f',  min_value=0, max_value=1),
             'Chinstrap': st.column_config.ProgressColumn('Chinstrap', format='%f', min_value=0, max_value=1),
             'Gentoo': st.column_config.ProgressColumn('Gentoo', format='%f', min_value=0, max_value=1),
-            'Predicted_Species': st.column_config.TextColumn('Predicted Species', width='medium')
+            'Predicted_Species': st.column_config.TextColumn('Predicted Species')
         }, hide_index=False)
         # width='medium',
 
