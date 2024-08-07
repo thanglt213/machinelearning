@@ -154,6 +154,8 @@ else:
     st.success("Model trained and saved to file.")
 
 """
+# Load data
+load_data()
 
 # Load or train model
 clf = get_model()
