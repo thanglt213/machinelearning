@@ -95,6 +95,31 @@ with st.expander('Data preparation'):
     st.write('**Encoded y**')
     y
 
+def predict_penguin(input_row: pd.DataFrame):
+    if input_row.empty:
+        st.write("Input data to predict!")
+    else:
+        prediction = clf.predict(input_row)
+        prediction_proba = clf.predict_proba(input_row)
+        
+        # DataFrame containing prediction probabilities for each species
+        df_prediction_proba = pd.DataFrame(prediction_proba, columns=['Adelie', 'Chinstrap', 'Gentoo'])
+        
+        # Array containing the names of the penguin species
+        penguins_species = np.array(['Adelie', 'Chinstrap', 'Gentoo'])
+        
+        # Add 'Predicted_Species' column to the DataFrame df_prediction_proba
+        df_prediction_proba['Predicted_Species'] = [penguins_species[pred] for pred in prediction]
+        
+        # Display the DataFrame with prediction probabilities and predicted species
+        st.subheader('Prediction Probabilities and Predicted Species')
+        st.dataframe(df_prediction_proba, column_config={
+            'Adelie': st.column_config.ProgressColumn('Adelie', format='%f', width='medium', min_value=0, max_value=1),
+            'Chinstrap': st.column_config.ProgressColumn('Chinstrap', format='%f', width='medium', min_value=0, max_value=1),
+            'Gentoo': st.column_config.ProgressColumn('Gentoo', format='%f', width='medium', min_value=0, max_value=1),
+            'Predicted_Species': st.column_config.TextColumn('Predicted Species', width='medium')
+        }, hide_index=False)
+        
 # Check if model file exists
 if os.path.exists(MODEL_FILE_PATH):
     # Load the model from file
@@ -107,60 +132,6 @@ else:
     joblib.dump(clf, MODEL_FILE_PATH)
     st.success("Model trained and saved to file.")
 
-def predict_penguin(input_row: pd.DataFrame):
-    if input_row.empty:
-        st.write("Input data to predict!")
-    else:
-        prediction = clf.predict(input_row)
-        prediction_proba = clf.predict_proba(input_row)
-        
-        # DataFrame chứa xác suất dự đoán cho từng loài
-        df_prediction_proba = pd.DataFrame(prediction_proba, columns=['Adelie', 'Chinstrap', 'Gentoo'])
-        
-        # Mảng chứa tên các loài chim cánh cụt
-        penguins_species = np.array(['Adelie', 'Chinstrap', 'Gentoo'])
-        
-        # Thêm cột 'Predicted_Species' vào DataFrame df_prediction_proba
-        df_prediction_proba['Predicted_Species'] = [penguins_species[pred] for pred in prediction]
-        
-        # Hiển thị DataFrame với cột xác suất và kết quả dự đoán
-        st.subheader('Prediction Probabilities and Predicted Species')
-        st.dataframe(df_prediction_proba, column_config={
-            'Adelie': st.column_config.ProgressColumn('Adelie', format='%f', width='medium', min_value=0, max_value=1),
-            'Chinstrap': st.column_config.ProgressColumn('Chinstrap', format='%f', width='medium', min_value=0, max_value=1),
-            'Gentoo': st.column_config.ProgressColumn('Gentoo', format='%f', width='medium', min_value=0, max_value=1),
-            'Predicted_Species': st.column_config.TextColumn('Predicted Species', width='medium')
-        }, hide_index=False)
-        
-        st.success("Predictions added to the dataframe successfully.")
-
-
-"""
-def predict_penguin(input_row: pd.DataFrame):
-    # Apply model to make predictions
-    if input_row.empty:
-        st.write("Input data to predict!")
-    else:
-        prediction = clf.predict(input_row)
-        prediction_proba = clf.predict_proba(input_row)
-        
-        df_prediction_proba = pd.DataFrame(prediction_proba, columns=['Adelie', 'Chinstrap', 'Gentoo'])
-        
-        # Display predicted species
-        st.subheader('Predicted Species')
-        penguins_species = np.array(['Adelie', 'Chinstrap', 'Gentoo'])
-        df_prediction_proba
-        st.dataframe(df_prediction_proba, column_config={
-            'Adelie': st.column_config.ProgressColumn('Adelie', format='%f', width='medium', min_value=0, max_value=1),
-            'Chinstrap': st.column_config.ProgressColumn('Chinstrap', format='%f', width='medium', min_value=0, max_value=1),
-            'Gentoo': st.column_config.ProgressColumn('Gentoo', format='%f', width='medium', min_value=0, max_value=1)
-            # 'Predicted species': {penguins_species[prediction][0]}
-        }, hide_index=True)
-        
-        # penguins_species = np.array(['Adelie', 'Chinstrap', 'Gentoo'])
-        st.success(f"Predicted species: {penguins_species[prediction][0]}")
-
-"""
-
+# Make predition
 predict_penguin(input_row)
 
