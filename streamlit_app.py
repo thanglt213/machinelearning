@@ -47,7 +47,7 @@ def get_user_input():
     features = pd.DataFrame(data, index=[0])
     return features
 
-st.title('🤖 Machine Learning App')
+st.title('🤖 Machine Learning App to Predict Penguins')
 
 st.info(
     '''
