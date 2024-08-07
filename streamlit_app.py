@@ -94,7 +94,7 @@ with st.expander('Data preparation'):
     st.write('**Encoded y**')
     y
 
-def predict_penguin(input_row: pd.DataFrame):
+def predict_penguin(clf, input_row: pd.DataFrame):
     if input_row.empty:
         st.write("Input data to predict!")
     else:
@@ -132,10 +132,11 @@ def load_model():
         clf.fit(X, y)
         joblib.dump(clf, MODEL_FILE_PATH)
         st.success("Model trained and saved to file.")
+    return clf
 
 # Load model
-load_model()
+clf = load_model()
 # Make prediction
-predict_penguin(input_row)
+predict_penguin(clf, input_row)
 
 
