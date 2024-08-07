@@ -145,7 +145,7 @@ y = y_raw.apply(lambda val: target_mapper[val])
 # Show encoded features
 with st.expander('Data preparation'):
     st.write('**Encoded X (input penguin)**')
-    input_row
+    input_rows
     st.write('**Encoded y**')
     y
 
