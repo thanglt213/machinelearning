@@ -18,11 +18,35 @@ st.info(
     '''
 )
 
+# Function to load data
+@st.cache
+def load_data():
+    df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv')
+    X_raw = df.drop('species', axis=1)
+    y_raw = df.species
+    return df, X_raw, y_raw
+
+# Get model function
+def get_model():
+    # Check if model file exists
+    if os.path.exists(MODEL_FILE_PATH):
+        # Load the model from file
+        model = joblib.load(MODEL_FILE_PATH)
+        st.success("Model loaded from file.")
+    else:
+        # Train the model and save it to file
+        model = RandomForestClassifier()
+        model.fit(X, y)
+        joblib.dump(model, MODEL_FILE_PATH)
+        st.success("Model trained and saved to file.")
+    return model
+
+
 # Show raw data
 with st.expander('Data'):
     st.write('**Raw data**')
-    df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv')
-    df
+    # df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv')
+    df, X_raw, y_raw = load_data()
 
     st.write('**X**')
     X_raw = df.drop('species', axis=1)
@@ -119,23 +143,8 @@ def predict_penguin(clf, input_row: pd.DataFrame):
             'Predicted_Species': st.column_config.TextColumn('Predicted Species', width='medium')
         }, hide_index=False)
 
-# Load model function
-def load_model():
-    # Check if model file exists
-    if os.path.exists(MODEL_FILE_PATH):
-        # Load the model from file
-        clf = joblib.load(MODEL_FILE_PATH)
-        st.success("Model loaded from file.")
-    else:
-        # Train the model and save it to file
-        clf = RandomForestClassifier()
-        clf.fit(X, y)
-        joblib.dump(clf, MODEL_FILE_PATH)
-        st.success("Model trained and saved to file.")
-    return clf
-
 # Load model
-clf = load_model()
+clf = get_model()
 # Make prediction
 predict_penguin(clf, input_row)
 
