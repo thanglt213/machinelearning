@@ -107,7 +107,7 @@ else:
     joblib.dump(clf, MODEL_FILE_PATH)
     st.success("Model trained and saved to file.")
 
-def predict_penguin(input_row: pd.dataframe):
+def predict_penguin(input_row: pd.DataFrame):
     # Apply model to make predictions
     if input_row.empty:
         st.write("Input data to predict!")
