@@ -68,12 +68,12 @@ def get_user_input():
     return st.session_state.input_df
 
 # Function to make predictions
-def predict_penguin(clf, input_row: pd.DataFrame):
-    if input_row.empty:
+def predict_penguin(clf, input_rows: pd.DataFrame):
+    if input_rows.empty:
         st.write("Input data to predict!")
     else:
-        prediction = clf.predict(input_row)
-        prediction_proba = clf.predict_proba(input_row)
+        prediction = clf.predict(input_rows)
+        prediction_proba = clf.predict_proba(input_rows)
         
         # DataFrame containing prediction probabilities for each species
         df_prediction_proba = pd.DataFrame(prediction_proba, columns=['Adelie', 'Chinstrap', 'Gentoo'])
@@ -121,7 +121,6 @@ with st.expander('Data visualization'):
 # Input features to predict
 with st.sidebar:
     st.header('Input features')
-    # get_user_input()
     input_df = get_user_input()
 
 # Show input features
@@ -138,7 +137,7 @@ df_penguins = pd.get_dummies(input_penguins, prefix=encode)
 
 n = len(input_df)
 X = df_penguins[n:]
-input_row = df_penguins[:n]
+input_rows = df_penguins[:n]
 
 target_mapper = {'Adelie': 0, 'Chinstrap': 1, 'Gentoo': 2}
 y = y_raw.apply(lambda val: target_mapper[val])
@@ -153,6 +152,6 @@ with st.expander('Data preparation'):
 # Load model
 clf = get_model()
 # Make prediction
-predict_penguin(clf, input_row)
+predict_penguin(clf, input_rows)
 
 
