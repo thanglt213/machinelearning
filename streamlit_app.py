@@ -42,6 +42,7 @@ def get_model():
 with st.expander('Data'):
     st.write('**Raw data**')
     # df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv')
+    load_data()
     df
 
     st.write('**X**')
@@ -154,8 +155,6 @@ else:
     st.success("Model trained and saved to file.")
 
 """
-# Load data
-load_data()
 
 # Load or train model
 clf = get_model()
