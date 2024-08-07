@@ -76,22 +76,15 @@ with st.expander('Input features'):
     input_df
     st.write('**Combined penguins data**')
     input_penguins
-    st.dataframe(input_df)
-
-"""
-with st.expander('Input features'):
-    st.write('**Input penguin**')
-    input_df
-    st.write('**Combined penguins data**')
-    input_penguins
 
 
 # Data preparation
 encode = ['island', 'sex']
 df_penguins = pd.get_dummies(input_penguins, prefix=encode)
 
-X = df_penguins[1:]
-input_row = df_penguins[:1]
+n = len(input_df)
+X = df_penguins[n:]
+input_row = df_penguins[:n]
 
 target_mapper = {'Adelie': 0, 'Chinstrap': 1, 'Gentoo': 2}
 y = y_raw.apply(lambda val: target_mapper[val])
@@ -131,4 +124,4 @@ st.dataframe(df_prediction_proba, column_config={
 penguins_species = np.array(['Adelie', 'Chinstrap', 'Gentoo'])
 st.success(f"Predicted species: {penguins_species[prediction][0]}")
 
-"""
+
