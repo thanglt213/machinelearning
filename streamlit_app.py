@@ -1,4 +1,5 @@
 import streamlit as st
+from st_aggrid import AgGrid, GridOptionsBuilder, GridUpdateMode
 import numpy as np
 import pandas as pd
 import joblib
@@ -73,7 +74,7 @@ input_penguins = pd.concat([input_df, X_raw], axis=0)
 
 with st.expander('Input features'):
     st.write('**Input penguin**')
-    input_df
+    AgGrid(input_df)
     st.write('**Combined penguins data**')
     input_penguins
 
