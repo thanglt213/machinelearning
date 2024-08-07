@@ -123,12 +123,12 @@ def predict_penguin(input_row: pd.DataFrame):
         st.dataframe(df_prediction_proba, column_config={
             'Adelie': st.column_config.ProgressColumn('Adelie', format='%f', width='medium', min_value=0, max_value=1),
             'Chinstrap': st.column_config.ProgressColumn('Chinstrap', format='%f', width='medium', min_value=0, max_value=1),
-            'Gentoo': st.column_config.ProgressColumn('Gentoo', format='%f', width='medium', min_value=0, max_value=1),
-            'Predicted species': {penguins_species[prediction][0]}
+            'Gentoo': st.column_config.ProgressColumn('Gentoo', format='%f', width='medium', min_value=0, max_value=1)
+            # 'Predicted species': {penguins_species[prediction][0]}
         }, hide_index=True)
         
         # penguins_species = np.array(['Adelie', 'Chinstrap', 'Gentoo'])
-        # st.success(f"Predicted species: {penguins_species[prediction][0]}")
+        st.success(f"Predicted species: {penguins_species[prediction][0]}")
 
 predict_penguin(input_row)
 
