@@ -62,7 +62,7 @@ with st.sidebar:
     }
     
     # Add button to append data to the session state
-    if st.button('Add'):
+    if st.button('Add data to predict'):
         # Combine with existing raw data (assuming X_raw is already defined)
         new_row = pd.DataFrame(data, index=[0])
         input_df = pd.concat([st.session_state.input_df, new_row], ignore_index=True)
@@ -117,10 +117,9 @@ def predict_penguin(input_row: pd.DataFrame):
             'Adelie': st.column_config.ProgressColumn('Adelie', format='%f',  min_value=0, max_value=1),
             'Chinstrap': st.column_config.ProgressColumn('Chinstrap', format='%f', min_value=0, max_value=1),
             'Gentoo': st.column_config.ProgressColumn('Gentoo', format='%f', min_value=0, max_value=1),
-            'Predicted_Species': st.column_config.TextColumn('Predicted Species')
+            'Predicted_Species': st.column_config.TextColumn('Predicted Species', width='medium')
         }, hide_index=False)
-        # width='medium',
-
+        
 # Check if model file exists
 if os.path.exists(MODEL_FILE_PATH):
     # Load the model from file
@@ -133,6 +132,6 @@ else:
     joblib.dump(clf, MODEL_FILE_PATH)
     st.success("Model trained and saved to file.")
 
-# Make predition
+# Make preditions
 predict_penguin(input_row)
 
