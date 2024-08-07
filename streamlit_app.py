@@ -114,12 +114,13 @@ def predict_penguin(input_row: pd.DataFrame):
         # Display the DataFrame with prediction probabilities and predicted species
         st.subheader('Prediction Probabilities and Predicted Species')
         st.dataframe(df_prediction_proba, column_config={
-            'Adelie': st.column_config.ProgressColumn('Adelie', format='%f', width='medium', min_value=0, max_value=1),
-            'Chinstrap': st.column_config.ProgressColumn('Chinstrap', format='%f', width='medium', min_value=0, max_value=1),
-            'Gentoo': st.column_config.ProgressColumn('Gentoo', format='%f', width='medium', min_value=0, max_value=1),
+            'Adelie': st.column_config.ProgressColumn('Adelie', format='%f',  min_value=0, max_value=1),
+            'Chinstrap': st.column_config.ProgressColumn('Chinstrap', format='%f', min_value=0, max_value=1),
+            'Gentoo': st.column_config.ProgressColumn('Gentoo', format='%f', min_value=0, max_value=1),
             'Predicted_Species': st.column_config.TextColumn('Predicted Species', width='medium')
         }, hide_index=False)
-        
+        # width='medium',
+
 # Check if model file exists
 if os.path.exists(MODEL_FILE_PATH):
     # Load the model from file
