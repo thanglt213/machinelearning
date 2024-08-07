@@ -110,7 +110,7 @@ else:
 def predict_penguin(input_row: pd.dataframe):
     # Apply model to make predictions
     if input_row.empty:
-        st.write("Input data to predict!)
+        st.write("Input data to predict!")
     else:
         prediction = clf.predict(input_row)
         prediction_proba = clf.predict_proba(input_row)
