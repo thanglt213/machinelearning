@@ -67,13 +67,16 @@ with st.sidebar:
         new_row = pd.DataFrame(data, index=[0])
         input_df = pd.concat([st.session_state.input_df, new_row], ignore_index=True)
         st.session_state.input_df = input_df
-    input_df = st.session_state.input_df
-    # input_penguins = pd.concat([input_df, X_raw], axis=0)
 
-st.dataframe(input_df)
+input_df = st.session_state.input_df
 input_penguins = pd.concat([input_df, X_raw], axis=0)
-st.write(input_penguins)
 
+with st.expander('Input features'):
+    st.write('**Input penguin**')
+    input_df
+    st.write('**Combined penguins data**')
+    input_penguins
+    st.dataframe(input_df)
 
 """
 with st.expander('Input features'):
