@@ -77,7 +77,6 @@ with st.expander('Input features'):
     st.write('**Combined penguins data**')
     input_penguins
 
-
 # Data preparation
 encode = ['island', 'sex']
 df_penguins = pd.get_dummies(input_penguins, prefix=encode)
@@ -120,20 +119,22 @@ def predict_penguin(input_row: pd.DataFrame):
             'Predicted_Species': st.column_config.TextColumn('Predicted Species', width='medium')
         }, hide_index=False)
 
-       
-# Check if model file exists
-if os.path.exists(MODEL_FILE_PATH):
-    # Load the model from file
-    clf = joblib.load(MODEL_FILE_PATH)
-    st.success("Model loaded from file.")
-else:
-    # Train the model and save it to file
-    clf = RandomForestClassifier()
-    clf.fit(X, y)
-    joblib.dump(clf, MODEL_FILE_PATH)
-    st.success("Model trained and saved to file.")
+# Load model function
+def load_model()
+    # Check if model file exists
+    if os.path.exists(MODEL_FILE_PATH):
+        # Load the model from file
+        clf = joblib.load(MODEL_FILE_PATH)
+        st.success("Model loaded from file.")
+    else:
+        # Train the model and save it to file
+        clf = RandomForestClassifier()
+        clf.fit(X, y)
+        joblib.dump(clf, MODEL_FILE_PATH)
+        st.success("Model trained and saved to file.")
 
-
+# Load model
+load_model()
 # Make prediction
 predict_penguin(input_row)
 
