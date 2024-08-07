@@ -70,7 +70,7 @@ with st.sidebar:
     input_df = st.session_state.input_df
     input_penguins = pd.concat([input_df, X_raw], axis=0)
 
-st.write(input_df)
+st.dataframe(input_df)
 st.write(input_penguins)
 
 
