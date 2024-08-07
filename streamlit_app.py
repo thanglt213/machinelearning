@@ -93,34 +93,8 @@ if 'input_penguins' not in st.session_state:
 
 with st.sidebar:
     st.header('Input features')
-    get_user_input()
-    
-    """
-    island = st.selectbox('Island', ('Biscoe', 'Dream', 'Torgersen'))
-    bill_length_mm = st.slider('Bill length (mm)', 32.1, 59.6, 43.9)
-    bill_depth_mm = st.slider('Bill depth (mm)', 13.1, 21.5, 17.2)
-    flipper_length_mm = st.slider('Flipper length (mm)', 172.0, 231.0, 201.0)
-    body_mass_g = st.slider('Body mass (g)', 2700.0, 6300.0, 4207.0)
-    gender = st.selectbox('Gender', ('male', 'female'))
-
-    data = {
-        'island': island,
-        'bill_length_mm': bill_length_mm,
-        'bill_depth_mm': bill_depth_mm,
-        'flipper_length_mm': flipper_length_mm,
-        'body_mass_g': body_mass_g,
-        'sex': gender
-    }
-    
-    # Add button to append data to the session state
-    if st.button('Add data to predict'):
-        # Combine with existing raw data (assuming X_raw is already defined)
-        new_row = pd.DataFrame(data, index=[0])
-        input_df = pd.concat([st.session_state.input_df, new_row], ignore_index=True)
-        st.session_state.input_df = input_df
-    """
-
-input_df = get_user_input()
+    # get_user_input()
+    input_df = get_user_input()
 input_penguins = pd.concat([input_df, X_raw], axis=0)
 
 with st.expander('Input features'):
