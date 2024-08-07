@@ -27,6 +27,7 @@ def load_data():
     return df, X_raw, y_raw
 
 # Get model function
+@st.cache
 def get_model():
     # Check if model file exists
     if os.path.exists(MODEL_FILE_PATH):
@@ -45,7 +46,6 @@ def get_model():
 # Show raw data
 with st.expander('Data'):
     st.write('**Raw data**')
-    # df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv')
     df, X_raw, y_raw = load_data()
 
     st.write('**X**')
