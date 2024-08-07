@@ -120,7 +120,7 @@ def predict_penguin(input_row: pd.DataFrame):
         }, hide_index=False)
 
 # Load model function
-def load_model()
+def load_model():
     # Check if model file exists
     if os.path.exists(MODEL_FILE_PATH):
         # Load the model from file
