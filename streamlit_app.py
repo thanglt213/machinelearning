@@ -146,6 +146,9 @@ with st.expander('Data visualization'):
 with st.sidebar:
     st.header('Input features')
     input_df = get_user_input()
+    # Button to retrain model
+    if st.button('Retrain model'):
+        train_model(X,y)
 
 # Show input features
 with st.expander('Input features'):
@@ -157,13 +160,6 @@ X, y, input = encode_features(X_raw, y_raw, input_df)
 
 # Show encoded categorical features
 with st.expander('Data preparation'):
-    # Button to retrain model
-    # Make three columns and set the button on the right
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col3:
-        if st.button('Retrain model'):
-            train_model(X,y)
-
     st.write('**Encoded input penguins**')
     input
     st.write('**Encoded X**')
