@@ -35,11 +35,16 @@ def get_model(X1,y1):
         model = joblib.load(MODEL_FILE_PATH)
         st.success("Model loaded from file.")
     else:
-        # Train the model and save it to file
-        model = RandomForestClassifier()
-        model.fit(X1, y1)
-        joblib.dump(model, MODEL_FILE_PATH)
-        st.success("Model trained and saved to file.")
+        model = train_model()
+    return model
+
+# Function to train model
+def train_model(X1, y1):
+    # Train the model and save it to file
+    model = RandomForestClassifier()
+    model.fit(X1, y1)
+    joblib.dump(model, MODEL_FILE_PATH)
+    st.success("Model trained and saved to file.")
     return model
 
 # Function to get user input
