@@ -157,16 +157,16 @@ X, y, input = encode_features(X_raw, y_raw, input_df)
 
 # Show encoded categorical features
 with st.expander('Data preparation'):
+    # Button to retrain model
+    if st.button('Retrain model'):
+        train_model(X,y)
+
     st.write('**Encoded input penguins**')
     input
     st.write('**Encoded X**')
     X
     st.write('**Encoded y**')
     y
-
-# Button to retrain model
-if st.button('Train model'):
-    train_model(X,y)
 
 # Load model
 clf = get_model(X,y)
