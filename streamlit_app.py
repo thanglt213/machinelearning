@@ -35,7 +35,7 @@ def get_model(X1,y1):
         model = joblib.load(MODEL_FILE_PATH)
         st.success("Model loaded from file.")
     else:
-        model = train_model()
+        model = train_model(X1, y1)
     return model
 
 # Function to train model
@@ -163,6 +163,8 @@ with st.expander('Data preparation'):
     X
     st.write('**Encoded y**')
     y
+    if st.button('Train model'):
+        train_model(X,y)
 
 # Load model
 clf = get_model(X,y)
