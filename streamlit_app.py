@@ -39,10 +39,10 @@ def get_model(X1,y1):
     """
         # Train the model and save it to file
         model = RandomForestClassifier()
-        model.fit(X1, y1)
+        model.fit(X, y)
         joblib.dump(model, MODEL_FILE_PATH)
         st.success("Model trained and saved to file.")
-    return model
+        return model
 
 # Function to get user input
 def get_user_input():
