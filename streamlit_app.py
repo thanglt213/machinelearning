@@ -37,7 +37,7 @@ def get_model(X1,y1):
     else:
         # Train the model and save it to file
         model = RandomForestClassifier()
-        model.fit(X, y)
+        model.fit(X1, y1)
         joblib.dump(model, MODEL_FILE_PATH)
         st.success("Model trained and saved to file.")
     return model
@@ -66,6 +66,24 @@ def get_user_input():
         st.session_state.input_df = input_df
 
     return st.session_state.input_df
+
+# Data preparation
+# Function to encode features
+def encode_features(raw_features, input_features):
+
+    encode = ['island', 'sex']
+
+    features = pd.concat([input_features, raw_features], axis=0)
+    df_features = pd.get_dummies(features, prefix=encode)
+
+    n = len(input_features)
+    X = df_features[n:]
+    input_rows = df_features[:n]
+
+    target_mapper = {'Adelie': 0, 'Chinstrap': 1, 'Gentoo': 2}
+    y = y_raw.apply(lambda val: target_mapper[val])
+       
+    return X, y, input_rows
 
 # Function to make predictions
 def predict_penguin(clf, input_rows: pd.DataFrame):
@@ -128,23 +146,6 @@ with st.expander('Input features'):
     st.write('**Input penguin**')
     input_df
 
-# Data preparation
-# Function to encode features
-def encode_features(raw_features, input_features):
-
-    encode = ['island', 'sex']
-
-    features = pd.concat([input_features, raw_features], axis=0)
-    df_features = pd.get_dummies(features, prefix=encode)
-
-    n = len(input_features)
-    X = df_features[n:]
-    input_rows = df_features[:n]
-
-    target_mapper = {'Adelie': 0, 'Chinstrap': 1, 'Gentoo': 2}
-    y = y_raw.apply(lambda val: target_mapper[val])
-       
-    return X, y, input_rows
 
 # Encode features
 X, y, input = encode_features(X_raw, input_df)
