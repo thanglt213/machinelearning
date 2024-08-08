@@ -69,7 +69,7 @@ def get_user_input():
         input_df = pd.concat([st.session_state.input_df, new_row], ignore_index=True)
         st.session_state.input_df = input_df
 
-    return input_df
+    return st.session_state.input_df
 
 # Data preparation
 # Function to encode categorical features
