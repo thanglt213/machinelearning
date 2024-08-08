@@ -163,8 +163,10 @@ with st.expander('Data preparation'):
     X
     st.write('**Encoded y**')
     y
-    if st.button('Train model'):
-        train_model(X,y)
+
+# Button to retrain model
+if st.button('Train model'):
+    train_model(X,y)
 
 # Load model
 clf = get_model(X,y)
