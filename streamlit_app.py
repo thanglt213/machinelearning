@@ -28,7 +28,7 @@ def load_data():
 
 # Function to load or train model
 @st.cache
-def get_model():
+def get_model(X1,y1):
     # Check if model file exists
     if os.path.exists(MODEL_FILE_PATH):
         # Load the model from file
@@ -37,7 +37,7 @@ def get_model():
     else:
         # Train the model and save it to file
         model = RandomForestClassifier()
-        model.fit(X, y)
+        model.fit(X1, y1)
         joblib.dump(model, MODEL_FILE_PATH)
         st.success("Model trained and saved to file.")
     return model
@@ -150,7 +150,7 @@ with st.expander('Data preparation'):
     y
 
 # Load model
-clf = get_model()
+clf = get_model(X,y)
 # Make prediction
 predict_penguin(clf, input_rows)
 
