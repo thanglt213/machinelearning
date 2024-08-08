@@ -8,7 +8,7 @@ from sklearn.ensemble import RandomForestClassifier
 # File path for saving the trained model
 MODEL_FILE_PATH = "penguin_random_forest_model.pkl"
 
-st.title('🤖 Machine Learning App')
+st.title('🤖 Machine Learning App to Predict Penguins')
 
 st.info(
     '''This is app builds a machine learning model in Python with streamlit!
