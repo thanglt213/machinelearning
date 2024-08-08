@@ -29,12 +29,14 @@ def load_data():
 # Function to load or train model
 @st.cache
 def get_model(X1,y1):
+    """
     # Check if model file exists
     if os.path.exists(MODEL_FILE_PATH):
         # Load the model from file
         model = joblib.load(MODEL_FILE_PATH)
         st.success("Model loaded from file.")
     else:
+    """
         # Train the model and save it to file
         model = RandomForestClassifier()
         model.fit(X1, y1)
