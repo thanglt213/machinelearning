@@ -62,7 +62,7 @@ def get_user_input():
     if st.button('Add data to predict'):
         new_row = pd.DataFrame(data, index=[0])
         input_df = pd.concat([st.session_state.input_df, new_row], ignore_index=True)
-        # st.session_state.input_df = input_df
+        st.session_state.input_df = input_df
 
     return input_df
 
