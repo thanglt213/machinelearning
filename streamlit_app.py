@@ -157,7 +157,6 @@ with st.expander('Data preparation'):
     st.write('**Encoded y**')
     y
 
-
 # Load model
 clf = get_model(X,y)
 
