@@ -150,6 +150,15 @@ with st.expander('Input features'):
 # Encode features
 X, y, input = encode_features(X_raw, input_df)
 
+# Show encoded features
+with st.expander('Data preparation'):
+    st.write('**Encoded X (input penguin)**')
+    input
+    X
+    st.write('**Encoded y**')
+    y
+
+
 # Load model
 clf = get_model(X,y)
 
