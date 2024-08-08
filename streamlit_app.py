@@ -127,9 +127,9 @@ with st.sidebar:
 with st.expander('Input features'):
     st.write('**Input penguin**')
     input_df
-    st.write('**Combined penguins data**')
-    input_penguins = pd.concat([input_df, X_raw], axis=0)
-    input_penguins
+    #st.write('**Combined penguins data**')
+    #input_penguins = pd.concat([input_df, X_raw], axis=0)
+    #input_penguins
 
 # Data preparation
 # Function to encode features
@@ -148,15 +148,6 @@ def encode_features(raw_features, input_features):
     y = y_raw.apply(lambda val: target_mapper[val])
        
     return X, y, input_rows
-    
-""""
-# Show encoded features
-with st.expander('Data preparation'):
-    st.write('**Encoded X (input penguin)**')
-    input_rows
-    st.write('**Encoded y**')
-    y
-""""
 
 # Encode features
 X, y, input_rows= encode_features(X_raw, input_df)
