@@ -29,19 +29,17 @@ def load_data():
 # Function to load or train model
 @st.cache
 def get_model(X1,y1):
-    """
     # Check if model file exists
     if os.path.exists(MODEL_FILE_PATH):
         # Load the model from file
         model = joblib.load(MODEL_FILE_PATH)
         st.success("Model loaded from file.")
     else:
-    """
-    # Train the model and save it to file
-    model = RandomForestClassifier()
-    model.fit(X, y)
-    joblib.dump(model, MODEL_FILE_PATH)
-    st.success("Model trained and saved to file.")
+        # Train the model and save it to file
+        model = RandomForestClassifier()
+        model.fit(X, y)
+        joblib.dump(model, MODEL_FILE_PATH)
+        st.success("Model trained and saved to file.")
     return model
 
 # Function to get user input
@@ -134,25 +132,38 @@ with st.expander('Input features'):
     input_penguins
 
 # Data preparation
-encode = ['island', 'sex']
-df_penguins = pd.get_dummies(input_penguins, prefix=encode)
+# Function to encode features
+def encode_features(raw_features, input_features):
 
-n = len(input_df)
-X = df_penguins[n:]
-input_rows = df_penguins[:n]
+    encode = ['island', 'sex']
 
-target_mapper = {'Adelie': 0, 'Chinstrap': 1, 'Gentoo': 2}
-y = y_raw.apply(lambda val: target_mapper[val])
+    features = pd.concat([input_features, raw_features], axis=0)
+    df_features = pd.get_dummies(features, prefix=encode)
 
+    n = len(input_features)
+    X = df_features[n:]
+    input_rows = df_features[:n]
+
+    target_mapper = {'Adelie': 0, 'Chinstrap': 1, 'Gentoo': 2}
+    y = y_raw.apply(lambda val: target_mapper[val])
+       
+    return X, y, input_rows
+    
+""""
 # Show encoded features
 with st.expander('Data preparation'):
     st.write('**Encoded X (input penguin)**')
     input_rows
     st.write('**Encoded y**')
     y
+""""
+
+# Encode features
+X, y, input_rows= encode_features(X_raw, input_df)
 
 # Load model
 clf = get_model(X,y)
+
 # Make prediction
 predict_penguin(clf, input_rows)
 
