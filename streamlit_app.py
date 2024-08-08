@@ -22,9 +22,7 @@ st.info(
 @st.cache
 def load_data():
     df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv')
-    X_raw = df.drop('species', axis=1)
-    y_raw = df.species
-    return df, X_raw, y_raw
+    return df
 
 # Function to load or train model
 @st.cache
@@ -69,11 +67,11 @@ def get_user_input():
 
 # Data preparation
 # Function to encode features
-def encode_features(raw_features, input_features):
+def encode_features(X_raw, y_raw, input_features):
 
     encode = ['island', 'sex']
 
-    features = pd.concat([input_features, raw_features], axis=0)
+    features = pd.concat([input_features, X_raw], axis=0)
     df_features = pd.get_dummies(features, prefix=encode)
 
     n = len(input_features)
@@ -122,7 +120,7 @@ if 'input_penguins' not in st.session_state:
 # Show raw data
 with st.expander('Data'):
     st.write('**Raw data**')
-    df, X_raw, y_raw = load_data()
+    df = load_data()
 
     st.write('**X**')
     X_raw = df.drop('species', axis=1)
@@ -148,13 +146,13 @@ with st.expander('Input features'):
 
 
 # Encode features
-X, y, input = encode_features(X_raw, input_df)
+X, y, input = encode_features(X_raw, y_raw, input_df)
 
 # Show encoded features
 with st.expander('Data preparation'):
     st.write('**Encoded input penguins**')
     input
-    st.write('**Encoded X **')
+    st.write('**Encoded X**')
     X
     st.write('**Encoded y**')
     y
