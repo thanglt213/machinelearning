@@ -147,12 +147,12 @@ def encode_features(raw_features, input_features):
     return X, y, input_rows
 
 # Encode features
-X, y, input_rows= encode_features(X_raw, input_df)
+X, y, input = encode_features(X_raw, input_df)
 
 # Load model
 clf = get_model(X,y)
 
 # Make prediction
-predict_penguin(clf, input_rows)
+predict_penguin(clf, input)
 
 
