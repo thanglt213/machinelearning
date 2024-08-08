@@ -152,8 +152,9 @@ X, y, input = encode_features(X_raw, input_df)
 
 # Show encoded features
 with st.expander('Data preparation'):
-    st.write('**Encoded X (input penguin)**')
+    st.write('**Encoded input penguins**')
     input
+    st.write('**Encoded X **')
     X
     st.write('**Encoded y**')
     y
