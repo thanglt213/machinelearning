@@ -146,9 +146,6 @@ with st.expander('Data visualization'):
 with st.sidebar:
     st.header('Input features')
     input_df = get_user_input()
-    # Button to retrain model
-    if st.button('Retrain model'):
-        train_model(X,y)
 
 # Show input features
 with st.expander('Input features'):
