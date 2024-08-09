@@ -21,13 +21,13 @@ st.info(
 )
 
 # Function to load data from CSV file
-@st.cache
+@st.cache_data
 def load_data():
     df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv')
     return df
 
 # Function to load or train model
-@st.cache
+@st.cache_resource
 def get_model(X1,y1):
     # Check if model file exists
     if os.path.exists(MODEL_FILE_PATH):
